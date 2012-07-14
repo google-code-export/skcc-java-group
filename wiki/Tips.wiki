@@ -1,0 +1,12 @@
+<wiki:toc max_depth="3" />
+
+= Eclipse 및 개발 환경 =
+
+===Java Class 실행 시 명령 행 인자 전달을 Eclipse 에서 사용 하는 방법===
+Class 를 한번 실행(Run As > Java Application) 한 후, Run Configuration 으로 들어가 
+
+https://sites.google.com/a/fundevs.com/fundevs-home/_/rsrc/1342245946772/imageholder/java_run.png
+
+Arguments Tap 에 명령 행 인자를 넣을 수 있으며, 이때 eclipse에 정의된 변수들을 사용할 수 있는데, ${string_prompt}를 지정하면 pop-up 이 떠서 실행 시 명령 행 인자를 넣을 수도 있다.
+
+https://sites.google.com/a/fundevs.com/fundevs-home/_/rsrc/1342246023791/imageholder/java_run2.png
