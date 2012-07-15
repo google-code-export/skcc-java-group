@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="myweb">
+	<select id="selectUser" resultClass="com.skcc.javagroup.myweb.User">
+		SELECT * FROM USER 
+		<isParameterPresent>WHERE NAME=#name#</isParameterPresent>
+	</select>
+	<insert id="insertUser">
+		INSERT INTO USER VALUES(#name#, #password#)
+	</insert>
+</sqlMap>
