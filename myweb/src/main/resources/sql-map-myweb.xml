@@ -7,4 +7,7 @@
 		SELECT * FROM USER 
 		<isParameterPresent>WHERE NAME=#name#</isParameterPresent>
 	</select>
+	<insert id="insertUser">
+		INSERT INTO USER VALUES(#name#, #password#)
+	</insert>
 </sqlMap>

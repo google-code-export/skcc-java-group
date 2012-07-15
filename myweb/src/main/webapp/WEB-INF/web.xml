@@ -9,14 +9,7 @@
   	<display-name>LoginServlet</display-name>
   	<description></description>
   	<servlet-class>com.skcc.javagroup.myweb.LoginServlet</servlet-class>
-  	<init-param>
-            <param-name>id</param-name>
-            <param-value>skcc</param-value>
-    </init-param> 
-    <init-param>
-            <param-name>pw</param-name>
-            <param-value>skcc0711</param-value>
-    </init-param> 
+
   </servlet>
       <servlet>
         <servlet-name>myweb</servlet-name>

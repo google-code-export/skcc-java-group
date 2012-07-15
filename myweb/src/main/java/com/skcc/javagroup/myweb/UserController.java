@@ -26,17 +26,18 @@ public class UserController {
 			if(user.getPassword().equals(pw)){
 				url = "main.jsp";
 			}else{
-				mv.addObject("msg", "ÆĞ½º¿öµå¸¦ È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.");
+				mv.addObject("msg", "íŒ¨ìŠ¤ì›Œë“œë¥¼ í™•ì¸í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.");
 				url = "login.jsp";
 			}
 		}else{
-			mv.addObject("msg", "¾ÆÀÌµğ¸¦ È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.");
+			mv.addObject("msg", "ì•„ì´ë””ë¥¼ í™•ì¸í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.");
 			url = "login.jsp";
 		}
 		mv.setViewName(url);
 		return mv;
 	}
 	
+/*RESTful Web Service ì˜ˆì œ*/	
 	@RequestMapping("/user/{name}")
 	public ModelAndView getUser(@PathVariable String name){
 		ModelAndView mv = new ModelAndView("jaxbView", BindingResult.MODEL_KEY_PREFIX +"response", userService.getUser(name));
