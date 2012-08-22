@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="HelloImplService" targetNamespace="http://jaxws.tutorial.skcc.com/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://jaxws.tutorial.skcc.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://jaxws.tutorial.skcc.com/" version="1.0" xmlns:tns="http://jaxws.tutorial.skcc.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="SayHello" type="tns:SayHello"/>
+<xs:element name="SayHelloResponse" type="tns:SayHelloResponse"/>
+<xs:element name="sayBye" type="tns:sayBye"/>
+<xs:element name="sayByeResponse" type="tns:sayByeResponse"/>
+<xs:complexType name="SayHello">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="SayHelloResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sayBye">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sayByeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="SayHelloResponse">
+    <wsdl:part element="tns:SayHelloResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SayHello">
+    <wsdl:part element="tns:SayHello" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayByeResponse">
+    <wsdl:part element="tns:sayByeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayBye">
+    <wsdl:part element="tns:sayBye" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Hello">
+    <wsdl:operation name="SayHello">
+      <wsdl:input message="tns:SayHello" name="SayHello">
+    </wsdl:input>
+      <wsdl:output message="tns:SayHelloResponse" name="SayHelloResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sayBye">
+      <wsdl:input message="tns:sayBye" name="sayBye">
+    </wsdl:input>
+      <wsdl:output message="tns:sayByeResponse" name="sayByeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloImplServiceSoapBinding" type="tns:Hello">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sayBye">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sayBye">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayByeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SayHello">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="SayHello">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="SayHelloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloImplService">
+    <wsdl:port binding="tns:HelloImplServiceSoapBinding" name="HelloImplPort">
+      <soap:address location="http://localhost:8080/ws-tutorial/services/hello"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

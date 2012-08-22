@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+	updateCheck="false" monitoring="autodetect" dynamicConfig="true">
+	<!-- http://ehcache.org/documentation/configuration.html -->
+	<!-- Also See org.springframework.cache.ehcache.EhCacheFactoryBean -->
+	<defaultCache overflowToDisk="true" eternal="true" />
+	<cache overflowToDisk="true" eternal="false" name="hello"
+		maxEntriesLocalHeap="1000" timeToLiveSeconds="3" timeToIdleSeconds="1" />
+</ehcache>

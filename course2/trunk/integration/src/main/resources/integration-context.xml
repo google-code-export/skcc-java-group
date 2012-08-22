@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-jms="http://www.springframework.org/schema/integration/jms"
+	xmlns:int-redis="http://www.springframework.org/schema/integration/redis"
+	xmlns:int-jdbc="http://www.springframework.org/schema/integration/jdbc"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:int-file="http://www.springframework.org/schema/integration/file"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-2.1.xsd
+		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file-2.1.xsd
+		http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd
+		http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+		http://www.springframework.org/schema/integration/jdbc http://www.springframework.org/schema/integration/jdbc/spring-integration-jdbc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/integration/redis http://www.springframework.org/schema/integration/redis/spring-integration-redis.xsd">
+
+	<cxf:bus>
+		<cxf:features>
+			<cxf:logging/>
+		</cxf:features>
+	</cxf:bus>
+	
+	<jaxws:server serviceClass="com.skcc.tutorial.ws.OrderService" address="http://localhost:8001/OrderService">
+		<jaxws:serviceBean>
+			<ref bean="orderServiceGateway"/>
+		</jaxws:serviceBean>
+	</jaxws:server>
+	
+	<int:gateway id="orderServiceGateway"
+		service-interface="com.skcc.tutorial.ws.OrderService" default-request-channel="orderServiceChannel"/>
+		
+	<bean id="orderService" class="com.skcc.tutorial.ws.OrderServiceImpl"/>
+	
+	<int:channel id="orderServiceChannel"></int:channel>
+
+	<jaxws:client id="orderServiceClient" serviceClass="com.skcc.tutorial.ws.OrderService"
+		address="http://localhost:8001/OrderService">
+	</jaxws:client>
+	
+	
+	<int:service-activator ref="orderService"
+		method="placeOrder" input-channel="placeOrderChannel">
+	</int:service-activator>
+	<int:payload-type-router input-channel="orderServiceChannel">
+		<int:mapping channel="placeOrderChannel" type="com.skcc.tutorial.ws.OrderType" />
+		<int:mapping channel="findOrderChannel" type="java.lang.String" />
+	</int:payload-type-router>
+	<int:channel id="placeOrderChannel">
+		<int:interceptors>
+			<int:wire-tap channel="loggingChannel" />
+		</int:interceptors>
+	</int:channel>
+	<int:service-activator input-channel="findOrderChannel" ref="orderService"
+		method="findOrder">
+	</int:service-activator>
+	<int:channel id="findOrderChannel"></int:channel>
+	<int:logging-channel-adapter channel="channel4" level="WARN"></int:logging-channel-adapter>
+	<int:channel id="loggingChannel"></int:channel>
+	
+	<int-file:inbound-channel-adapter directory="C:\test" channel="fileInputChannel">
+		<int:poller fixed-rate="1000"/>
+	</int-file:inbound-channel-adapter>
+	<int:json-to-object-transformer type="com.skcc.tutorial.ws.OrderType" input-channel="fileStringChannel" output-channel="channel5">
+	</int:json-to-object-transformer>
+	<int:channel id="fileInputChannel"></int:channel>
+	<int-file:file-to-string-transformer input-channel="fileInputChannel" output-channel="fileStringChannel"/>
+	<int:channel id="fileStringChannel">
+		<int:interceptors>
+			<int:wire-tap channel="loggingChannel" />
+		</int:interceptors>
+	</int:channel>
+	<int:object-to-json-transformer input-channel="loggingChannel" output-channel="channel4"></int:object-to-json-transformer>
+	<int:channel id="channel4"></int:channel>
+	
+	<int:channel id="channel5">
+		<int:interceptors>
+			
+		
+		</int:interceptors>
+	</int:channel>
+	<int:service-activator input-channel="channel5"
+		output-channel="channel6" ref="orderService" method="placeOrder">
+	</int:service-activator>
+	<int:logging-channel-adapter channel="channel6" level="WARN"></int:logging-channel-adapter>
+	<int:channel id="channel6"></int:channel>
+</beans>
