@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Department">
+
+	<select id="getDepartmentList" parameterClass="map"
+		resultClass="egovframework.lab.com.vo.Department">
+		SELECT a.deptid deptid,
+			a.deptname deptname,
+			a.superdeptid superdeptid,
+			a.depth depth,
+			b.deptname superdeptname
+		FROM department a,
+			 department b
+		where a.superdeptid = b.deptid
+		<isNotEmpty prepend="and" property="superdeptid">
+			a.superdeptid = #superdeptid#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="depth">
+			a.depth = #depth#
+		</isNotEmpty>
+	</select>
+
+		
+</sqlMap>

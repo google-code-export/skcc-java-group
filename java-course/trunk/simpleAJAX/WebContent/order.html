@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+        <meta http-equiv="content-type" content="text/html; charset=euc-kr" />
+        <title>AJAX</title>
+
+<script language="javascript" type="text/javascript">
+
+   var request = false;   
+   try {
+     request = new XMLHttpRequest();
+   } catch (trymicrosoft) {
+     try {
+       request = new ActiveXObject("Msxml2.XMLHTTP");
+     } catch (othermicrosoft) {
+       try {
+         request = new ActiveXObject("Microsoft.XMLHTTP");
+       } catch (failed) {
+         request = false;
+       }  
+     }
+   }
+   if (!request)
+     alert("Error initializing XMLHttpRequest!");
+   
+    // 고객 정보를 얻는 서비스 호출하는 함수
+ 	function getCustomerInfo() {
+  	   var phone = document.getElementById("phone").value;
+  	   var url = "./getcustinfo.jsp?phone=" + escape(phone);
+  	   request.open("GET", url, true);
+  	   request.onreadystatechange = updatePage;
+  	   request.send(null);
+ 	} 
+ 	
+ 	// 고객 정보를 받아 화면에 반영하는 함수
+	function updatePage() {
+	if (request.readyState == 4)
+       if (request.status == 200) {
+			var response = request.responseText.split("|");
+              document.getElementById("order").value = response[0];
+              document.getElementById("address").innerHTML =
+              response[1].replace(/\n/g, "");
+		} else if (request.status == 404)
+         alert("Request URL does not exist");
+       else
+         alert("Error: status code is " + request.status);
+	} 
+</script>
+</head>
+
+<body>
+  <p>Pizza</p>
+  <form action="POST">
+   <p>Phone Number:
+    <input type="text" size="14" name="phone" id="phone" onChange="getCustomerInfo();" />
+   </p>
+   <p>Your address:</p>
+   <div id="address"></div>
+   <p>input your order:</p>
+   <p><textarea name="order" rows="6" cols="50" id="order"></textarea></p>
+   <p><input type="submit" value="Order Pizza" id="submit" /></p>
+  </form>
+ </body>
+</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

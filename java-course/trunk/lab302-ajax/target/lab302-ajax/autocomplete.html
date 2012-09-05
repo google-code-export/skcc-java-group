@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Basic</title>
+    <script type="text/javascript" src="js/httpRequest.js"></script>
+    <script type="text/javascript">
+    var checkFirst = false;
+    var lastKeyword = '';
+    var loopSendKeyword = false;
+    
+    function startAutocomplete() {
+        if (checkFirst == false) {
+            setTimeout("sendKeyword();", 500);
+            loopSendKeyword = true;
+        }
+        checkFirst = true;
+    }
+    function sendKeyword() {
+        if (loopSendKeyword == false) return;
+        
+        var keyword = document.search.keyword.value;
+        if (keyword == '') {
+            lastKeyword = '';
+            hide('suggest');
+        } else if (keyword != lastKeyword) {
+            lastKeyword = keyword;
+            
+            if (keyword != '') {
+                var params = "keyword="+encodeURIComponent(keyword);
+                sendRequest("autocomplete.do", params, displayResult, 'POST');
+            } else {
+                hide('suggest');
+            }
+        }
+        setTimeout("sendKeyword();", 500);
+    }
+    function displayResult() {
+        if (httpRequest.readyState == 4) {
+            if (httpRequest.status == 200) {
+                var resultText = httpRequest.responseText;
+                var result = resultText.split('|');
+                var count = parseInt(result[0]);
+                var keywordList = null;
+                if (count > 0) {
+                    keywordList = result[1].split(',');
+                    var html = '';
+                    for (var i = 0 ; i < keywordList.length ; i++) {
+                        html += "<a href=\"javascript:select('"+
+                                keywordList[i]+"')\">"+
+                                keywordList[i]+"</a><br/>";
+                    }
+                    var listView = document.getElementById('suggestList');
+                    listView.innerHTML = html;
+                    
+                    show('suggest');
+                } else {
+                    hide('suggest');
+                }
+            } else {
+                alert("에러 발생: "+httpRequest.status);
+            }
+        }
+    }
+    function select(selectedKeyword) {
+        document.search.keyword.value = selectedKeyword;
+        loopSendKeyword = false;
+        checkFirst = false;
+        hide('suggest');
+    }
+    function show(elementId) {
+        var element = document.getElementById(elementId);
+        if (element) {
+            element.style.display = '';
+        }
+    }
+    function hide(elementId) {
+        var element = document.getElementById(elementId);
+        if (element) {
+            element.style.display = 'none';
+        }
+    }
+    </script>
+    <style>
+    #view {
+        border: 1px solid #999;
+    }
+    </style>
+</head>
+<body>
+<form name="search">
+<input type="text" name="keyword" id="keyword" onkeydown="startAutocomplete()" />
+<input type="button" value="검색" />
+<div id="suggest" style="display:; postion: absolute; left: 0px; top: 30px;">
+    <div id="suggestList"></div>
+</div>
+
+</form>
+
+</body>
+</html>

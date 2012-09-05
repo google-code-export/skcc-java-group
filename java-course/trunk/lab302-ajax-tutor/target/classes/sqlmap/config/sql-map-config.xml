@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<settings enhancementEnabled="true" useStatementNamespaces="true" />
+	<!-- 객체와 DB table을 맵핑하기 위한 xml파일의 위치를 지정하는 부분이다. -->
+	<sqlMap resource="sqlmap/lab/Employee.xml" />
+	<sqlMap resource="sqlmap/lab/Department.xml" />
+
+</sqlMapConfig>

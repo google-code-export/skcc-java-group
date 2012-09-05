@@ -1,0 +1,154 @@
+<style type="text/css">
+<!--
+    
+    body{
+		font-family: 맑은 고딕,Verdana,Arial,sans-serif;
+		font-size: 12px;
+	}
+	
+	#listpage {
+		width: 100%;   
+	  	line-height: 12px;
+	}
+	#listpage table {
+	  	width: 50%;   
+	  	border-collapse: collapse;   
+	  	font-size: 12px;   
+	  	line-height: 12px;   
+	}   
+	#listpage th {
+	  	padding: 10px;   
+	  	border: #d3d3d3 solid 1px;   
+	  	text-align: left;   
+	  	background: #F4F4FF;   
+	}     
+	#listpage td {   
+	  	padding: 10px;   
+	  	border: #d3d3d3 solid 1px;   
+	  	text-align: left;   
+	}
+	
+	#searchform {   
+	  	width: 100%;   
+	  	font-size: 12px;
+	  	line-height: 15px;
+	}   
+	#searchform table {
+	  	width: 50%;   
+	  	border-collapse: collapse;   
+	  	font-size: 12px;   
+	  	line-height: 15px;   
+	}   
+	#searchform th {
+	  	width: 20%;
+	  	padding: 10px;   
+	  	border: #d3d3d3 solid 1px;   
+	  	text-align: center;   
+	  	background: #F4F4FF;   
+	}     
+	#searchform td {   
+	  	padding: 10px;   
+	  	border: #d3d3d3 solid 1px;   
+	  	text-align: left;   
+	}	
+	
+	#editform {   
+	  	width: 100%;   
+	  	font-size: 12px;
+	  	line-height: 20px;   
+	}   
+	#editform table {
+	  	width: 80%;   
+	  	border-collapse: collapse;   
+	  	font-size: 12px;   
+	  	line-height: 20px;   
+	}   
+	#editform th {
+	  	width: 20%;
+	  	padding: 10px;   
+	  	border: #d3d3d3 solid 1px;   
+	  	text-align: center;   
+	  	background: #F4F4FF;   
+	}     
+	#editform td {   
+	  	padding: 10px;   
+	  	border: #d3d3d3 solid 1px;   
+	  	text-align: left;	  	 
+	}    
+	#editform tfoot td {
+	  	padding: 10px;   
+	  	border: #d3d3d3 solid 1px;   
+	  	text-align: center;   
+	}  
+  
+	#navigation {
+		/* Height required to allow padding of elements in IE */
+		height: 30px;
+		padding: 0;
+		font-size: 12px;
+	}
+	#navigation ul {
+		margin: 0;
+		padding: 0;
+	}
+	#navigation ul li {
+		display: inline;
+		list-style: none;	
+	}
+	#navigation ul li.first {
+		display: inline;
+		list-style: none;
+		margin: 0;
+		background: none;
+	}
+	#navigation ul li span.current {	
+		color: #921d02; 
+		border-bottom: 2px dotted #921d02;	
+	}
+	#navigation a { 
+		text-decoration: none; 
+		padding: 0;
+		background: none;
+		border: none;
+	}
+	#navigation a:link { 
+		color: #58564f; 
+		border: none;
+	}
+	#navigation a:visited { 
+		color: #58564f; 
+		border: none;
+	}
+	#navigation a:hover, #navigation a:focus { 
+		color: #921d02; 
+		border-bottom: 2px dotted #921d02;
+	}
+	#navigation a:active {
+		color: #000;
+		border-bottom: 2px dotted #000;
+	}
+	
+	#pagination {
+		font-family: 맑은 고딕,Verdana,Arial,sans-serif;
+		font-size: 12px;
+		text-align:center;
+		vertical-align: middle;
+	}
+	
+	#pagination a {
+		text-decoration: none;
+		border: none;
+	}
+	#pagination a:link { 
+		color: #58564f; 
+		border: none;
+	}
+	#pagination a:visited { 
+		color: #58564f; 
+		border: none;
+	}
+	#pagination image {
+		vertical-align: middle;
+	}
+-->  
+</style>

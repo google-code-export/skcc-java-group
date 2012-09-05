@@ -1,0 +1,1 @@
+java -Dfile.encoding=UTF-8 -cp ./../webapp/WEB-INF/lib/hsqldb-1.8.0.10.jar org.hsqldb.util.DatabaseManager -url jdbc:hsqldb:hsql://localhost/sampledb
