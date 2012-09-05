@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:int-file="http://www.springframework.org/schema/integration/file"
+	xsi:schemaLocation="http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf-2.6.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+	<cxf:bus>
+		<cxf:features>
+			<cxf:logging/>
+		</cxf:features>
+	</cxf:bus>
+	<int:converter >
+		<bean class="com.skcc.tutorial.integration.FileToStringConverter"/>
+	</int:converter>
+	<jaxws:server serviceClass="com.skcc.tutorial.ws.OrderService" address="http://localhost:8001/OrderService">
+		<jaxws:serviceBean>
+			<ref bean="orderServiceGateway"/>
+		</jaxws:serviceBean>
+	</jaxws:server>
+	
+	<int:gateway id="orderServiceGateway"
+		service-interface="com.skcc.tutorial.ws.OrderService" default-request-channel="orderServiceChannel"/>
+		
+	<bean id="orderService" class="com.skcc.tutorial.ws.OrderServiceImpl"/>
+	
+	<int:channel id="orderServiceChannel">
+		<int:interceptors>
+			<int:wire-tap channel="loggingChannel" />
+		</int:interceptors>
+	</int:channel>
+
+	<jaxws:client id="orderServiceClient" serviceClass="com.skcc.tutorial.ws.OrderService"
+		address="http://localhost:8001/OrderService">
+	</jaxws:client>
+	
+	
+	<int:service-activator ref="orderService"
+		input-channel="orderServiceChannel">
+	</int:service-activator>
+	
+	
+	
+	
+	<int:logging-channel-adapter channel="channel4" level="WARN"></int:logging-channel-adapter>
+	<int:channel id="loggingChannel"></int:channel>
+	
+	<int-file:inbound-channel-adapter directory="C:\test" channel="fileInputChannel" filename-pattern="*.json">
+		<int:poller fixed-rate="1000"/>
+	</int-file:inbound-channel-adapter>
+	<int:json-to-object-transformer type="com.skcc.tutorial.ws.OrderType" input-channel="fileInputChannel" output-channel="channel5">
+	</int:json-to-object-transformer>
+	<int:channel id="fileInputChannel" datatype="java.lang.String">
+		<int:interceptors>
+			<int:wire-tap channel="channel4" />
+		</int:interceptors>
+	</int:channel>
+
+
+	<int:object-to-json-transformer input-channel="loggingChannel" output-channel="channel4"></int:object-to-json-transformer>
+	<int:channel id="channel4"></int:channel>
+	
+	<int:channel id="channel5">
+		<int:interceptors>
+			
+		
+		</int:interceptors>
+	</int:channel>
+	<int:service-activator input-channel="channel5"
+		output-channel="channel6" ref="orderService" method="placeOrder">
+	</int:service-activator>
+	<int:logging-channel-adapter channel="channel6" level="WARN"></int:logging-channel-adapter>
+	<int:channel id="channel6"></int:channel>
+</beans>

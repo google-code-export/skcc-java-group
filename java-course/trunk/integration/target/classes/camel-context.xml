@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://cxf.apache.org/transports/camel"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:cxf="http://camel.apache.org/schema/cxf"
+	xsi:schemaLocation="http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring-2.0-M1.xsd
+		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/transports/camel http://cxf.apache.org/transports/camel.xsd">
+	<cxf:cxfEndpoint id="orderServiceEndpoint"
+		serviceClass="com.skcc.tutorial.ws.OrderService" address="http://localhost:8001/OrderService" />
+
+	<camelContext xmlns="http://camel.apache.org/schema/spring">
+		<dataFormats>
+			<json id="jackson" library="Jackson" unmarshalTypeName="com.skcc.tutorial.ws.OrderType" />
+		</dataFormats>
+		<route>
+			<from uri="cxf:bean:orderServiceEndpoint" />
+			<wireTap uri="direct:jsonLogging"/>
+			<to uri="bean:orderService" />
+		</route>
+		<route>
+			<from uri="file://C:/test" />
+			<unmarshal ref="jackson" />
+			<wireTap uri="direct:jsonLogging"/>
+			<to uri="bean:orderService" />
+		</route>
+		<route>
+			<from uri="direct:jsonLogging"/>
+			<marshal ref="jackson"/>
+			<log logName="com.skcc.tutorial.camel" message="${body}"/>
+		</route>
+	</camelContext>
+
+	<jaxws:client id="orderServiceClient" serviceClass="com.skcc.tutorial.ws.OrderService"
+		address="http://localhost:8001/OrderService">
+	</jaxws:client>
+
+	<bean id="orderService" class="com.skcc.tutorial.ws.OrderServiceImpl" />
+</beans>
