@@ -1,0 +1,16 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+기본 개발환경 구성을 설명하는 page
+
+
+= Details =
+
+Add your content here.  Format your content with:
+* JDK 설치 (1.6 이상)
+* J2EE 버전 eclipse 다운받아 설치
+* m2e 설치
+
+
+ * Automatic links to other wiki pages
