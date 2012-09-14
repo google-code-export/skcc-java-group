@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#개발환경 구성 guide
 
 = Introduction =
 
@@ -7,10 +7,32 @@
 
 = Details =
 
-Add your content here.  Format your content with:
-* JDK 설치 (1.6 이상)
-* J2EE 버전 eclipse 다운받아 설치
-* m2e 설치
+== Eclipse / Plugin 설치 ==
+ * JDK 설치 (1.6 이상 권장)
 
+ * J2EE 버전 eclipse 다운받아 설치
+ * m2e 설치
+  * 메뉴의 Help > Install New Software 에서 eclipse download 선택
+  * m2e 로 검색하고 설치 
+  https://sites.google.com/a/fundevs.com/fundevs-home/_/rsrc/1347587871984/imageholder/m2e_plugin.png
+ * m2e-wtp 설치
+  * 메뉴의 Help > Eclipse Marketplace
+  * maven 으로 검색하여 "Maven Integration for Eclipse WTP" 설치
+  https://sites.google.com/a/fundevs.com/fundevs-home/_/rsrc/1347587909626/imageholder/m2e-wtp.png
+ * Spring IDE 설치
+  * 메뉴의 Help > Eclipse Marketplace
+  * spring 으로 검색하여 *"Spring Tool Suite for Eclipse _{버전}_"* 설치 (Eclipse *버전별로 따로 있으니 확인하여 설치*)
+  * 여러가지 선택하여 설치할 수 있는데, 기본적으로 *Core/Spring IDE* 만 석택하여 설치하면 됨.
+  https://sites.google.com/a/fundevs.com/fundevs-home/_/rsrc/1347588044905/imageholder/sts1.png
 
- * Automatic links to other wiki pages
+== Eclipse WTP Server 설정 ===
+ * Apache tomcat 압축버전 다운받아 적당한 곳에 풀어 둠. [http://tomcat.apache.org]
+ * Eclipse 를 실행하고 Server view 를 open
+  * Menu > Window > Show View > Other > Server > Servers
+ * Servers view 에서 New > Server 를 선택하고 tomcat 압축 푼 디렉토리를 지정하여  서버 추가
+
+== 기타 ==
+ * 공동 작업 환경에서 한글이 깨지는 것을 막기위해 Workspace 의 encoding 은 *UTF-8* 로 지정
+  * Menu > Window > Preferences > General > Text File encoding 을 UTF-8로
+ * Perspective 는 일반적으로 Java 로 지정
+ 
