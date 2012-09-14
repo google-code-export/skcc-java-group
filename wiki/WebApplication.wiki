@@ -2,6 +2,7 @@
 <wiki:toc/>
 
 == J2EE Web Application 구조 ==
+_사전 개발 환경 구성은 [DevEnv 개발환경 페이지] 참조_
 
  * WebApp
   * static contents (html, jsp, image 등 하위 디렉토리에 따라 uri path 구성)
