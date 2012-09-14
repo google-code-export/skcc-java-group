@@ -13,3 +13,5 @@ https://sites.google.com/a/fundevs.com/fundevs-home/imageholder/calc.png
 
 
 구현은 JSP, Servlet 등 어떤 방법으로 구현하면 되며, tomcat 에 띄워서 테스트 가능해야 함.
+
+코드는 svn 에 commit 하시오.
