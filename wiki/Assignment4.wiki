@@ -5,7 +5,11 @@
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+두개의 숫자를 input 으로, operator 를 선택하여 계산하는 기능을 web application 으로 구현하시오.
+
+예를 들면 아래와 같은...
+
+https://sites.google.com/a/fundevs.com/fundevs-home/imageholder/calc.png
+
+
+구현은 JSP, Servlet 등 어떤 방법으로 구현하면 되며, tomcat 에 띄워서 테스트 가능해야 함.
