@@ -40,7 +40,7 @@ https://sites.google.com/a/fundevs.com/fundevs-home/_/rsrc/1347598440207/imageho
  
 == Servlet 추가하기 ==
  * src/main/java 에서 New > Other > Web > Servlet 로 Servlet 추가
- * 그러면 HttpServlet 을 구현한 class 가 만들어질 뿐만 아니라, deployment descriptopr (web.xml) 에도 필요한 설정이 들어가게 됨. 
+ * 그러면 HttpServlet을 구현한 class 가 만들어질 뿐만 아니라, deployment descriptopr (web.xml) 에도 필요한 설정이 추가됨. 
 {{{
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
