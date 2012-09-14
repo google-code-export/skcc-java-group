@@ -1,3 +1,4 @@
+#labels eclipse,java,maven,web,j2ee
 #개발환경 구성 guide
 
 = Introduction =
@@ -25,7 +26,7 @@
   https://sites.google.com/a/fundevs.com/fundevs-home/_/rsrc/1347588044905/imageholder/sts1.png
 
 == Eclipse WTP Server 설정 ===
- * Apache tomcat 압축버전 다운받아 적당한 곳에 풀어 둠. [http://tomcat.apache.org]
+ * Apache tomcat 압축버전 다운받아 원하는 곳에 풀어 둠. [http://tomcat.apache.org]
  * Eclipse 를 실행하고 Server view 를 open
   * Menu > Window > Show View > Other > Server > Servers
  * Servers view 에서 New > Server 를 선택하고 tomcat 압축 푼 디렉토리를 지정하여  서버 추가
