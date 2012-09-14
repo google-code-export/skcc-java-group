@@ -1,7 +1,6 @@
 #summary One-sentence summary of this page.
-<wiki:
+<wiki:toc/>
 
-= Introduction =
 == J2EE Web Application 구조 ==
 
  * WebApp
@@ -9,16 +8,56 @@
    * js
    * css
    * image 
+  * META-INF (meta 정보. 기본적으로는 필요 없음(없어도 됨))
   * WEB-INF
    * classes (java class 파일들이 들어감)
    * lib (jar 파일들이 들어감)
    * web.xml (deployment descriptor)
 
-== maven war project 구조 ==
+== Maven War Project 생성하기 ==
+ * New > Project... > Maven > Maven Project 를 선택
+ * Next 를 누르면 Maven project 의 archetype 을 선택하는 부분이 나오는데 (archetype 은.. 일종의 template 이라고 보면 됨.) Catalog 를 All Catalogs 로 하고 maven-archetype-webapp 을 선택하고 Next.
+ * Group Id 와 Artifact Id 를 입력하고 선택. Group ID 는 java package 와 같은 형태.. (com.skcc.) 그리고 artifact Id 는 소문자와 '-' 등을 이용하여 작성. 이때 artifact id 가 project name 이 됨.
+ * 프로젝트에 src/main/java, src/test/resources 가 없으므로, 해당 폴더를 생성. (프로젝트에서 New > Folder - 'Source Folder' 아님) 
+ * 프로젝트서 Maven > Update Project 를 한번 해줌. 
+ * 프로젝트 Properties 에 Java Build Path 의 Libraries tab 에서 Add Library... 를 선택하고 Server Runtime 을 선택하면, 기존에 설정했던 Apache Tomcat 이 나옴. 이를 선택하고 OK.
+
+이로서 maven 을 이용하여 web application 을 개발하고 테스트할 준비가 다 되었음.
+
+== Maven War Project 구조 ==
 pom.xml 파일을 Maven Build.. 로 실행하고 goal 에 'package' 로 입력을 하면 아래 그림과 같이 target directory 에 web app 이 구성되고 war 파일이 생성됨.
 
 https://sites.google.com/a/fundevs.com/fundevs-home/_/rsrc/1347598440207/imageholder/webapp.png
 
+<참고>
+
+ * 위 그림에서와 같이 구성이 되는 것은, project 의 Properties (프로젝트선택하고 마우스 오른쪽 버튼 누르고 맨 아래)를 열어서 Deployment Assembly 를 선택해보면 Web Application 이 어떻게 package 되어야 하는지 설정하는 부분에 나와있슴. 
+ * Maven Dependencies 의 경우 m2e-wtp 의 기능에 의해 자동으로 설정됨. (m2e-wtp 를 설치 안한 경우 수동으로 설정해야 함)
+ * Jar 는 Java Archive, War 는 Web Archive 를 의미 
+ 
 == Servlet 추가하기 ==
  * src/main/java 에서 New > Other > Web > Servlet 로 Servlet 추가
+ * 그러면 HttpServlet 을 구현한 class 가 만들어질 뿐만 아니라, deployment descriptopr (web.xml) 에도 필요한 설정이 들어가게 됨. 
+{{{
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>CalculatorServlet</servlet-name>
+  	<display-name>CalculatorServlet</display-name>
+  	<description></description>
+  	<servlet-class>my.calulator.CalculatorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CalculatorServlet</servlet-name>
+  	<url-pattern>/CalculatorServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
+}}}
 
+== Web Application Test 하기 ==
+ * Servers view 로 가서 설정된 서버를 선택하고 Add and Remove 를 통해 생성된 web  project 를 deploy 하거나, drag and drop 또는 delete 키 입력을 통해 deploy/remove 할 수 있음. 
+ * Server 를 더블클릭하면 해당 서버의 설정 파일이 열리는데,
+  * Overview 에서 port, timeout 등 설정
+  * Modules 에서 deploy 된 app 과 path 를 설정 가능 함. (기본 path는 project 명과 동일) 
+ * Start 버튼을 눌러 Server 를 시작
+ * Browser 를 열고 http://localhost:8080/{application_path}/index.jsp 로 확인
