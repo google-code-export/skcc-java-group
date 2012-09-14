@@ -1,0 +1,24 @@
+#summary One-sentence summary of this page.
+<wiki:
+
+= Introduction =
+== J2EE Web Application 구조 ==
+
+ * WebApp
+  * static contents (html, jsp, image 등 하위 디렉토리에 따라 uri path 구성)
+   * js
+   * css
+   * image 
+  * WEB-INF
+   * classes (java class 파일들이 들어감)
+   * lib (jar 파일들이 들어감)
+   * web.xml (deployment descriptor)
+
+== maven war project 구조 ==
+pom.xml 파일을 Maven Build.. 로 실행하고 goal 에 'package' 로 입력을 하면 아래 그림과 같이 target directory 에 web app 이 구성되고 war 파일이 생성됨.
+
+https://sites.google.com/a/fundevs.com/fundevs-home/_/rsrc/1347598440207/imageholder/webapp.png
+
+== Servlet 추가하기 ==
+ * src/main/java 에서 New > Other > Web > Servlet 로 Servlet 추가
+
