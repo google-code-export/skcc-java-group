@@ -1,8 +1,8 @@
 #summary One-sentence summary of this page.
+#labels maven,eclipse
 <wiki:toc/>
 
 == J2EE Web Application 구조 ==
-_사전 개발 환경 구성은 [DevEnv 개발환경 페이지] 참조_
 
  * WebApp
   * static contents (html, jsp, image 등 하위 디렉토리에 따라 uri path 구성)
@@ -16,6 +16,8 @@ _사전 개발 환경 구성은 [DevEnv 개발환경 페이지] 참조_
    * web.xml (deployment descriptor)
 
 == Maven War Project 생성하기 ==
+_아래 진행하는데 필요한 개발 환경 구성은 [DevEnv 개발환경 페이지] 참조_
+
  * New > Project... > Maven > Maven Project 를 선택
  * Next 를 누르면 Maven project 의 archetype 을 선택하는 부분이 나오는데 (archetype 은.. 일종의 template 이라고 보면 됨.) Catalog 를 All Catalogs 로 하고 maven-archetype-webapp 을 선택하고 Next.
  * Group Id 와 Artifact Id 를 입력하고 선택. Group ID 는 java package 와 같은 형태.. (com.skcc.) 그리고 artifact Id 는 소문자와 '-' 등을 이용하여 작성. 이때 artifact id 가 project name 이 됨.
