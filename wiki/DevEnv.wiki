@@ -11,10 +11,9 @@
 == Eclipse / Plugin 설치 ==
  * JDK 설치 (1.6 이상 권장)
  * J2EE 버전 eclipse 다운받아 설치
- * m2e 설치
-  * 메뉴의 Help > Install New Software 에서 eclipse download 선택
-  * m2e 로 검색하고 설치 
-  https://sites.google.com/a/fundevs.com/fundevs-home/_/rsrc/1347587871984/imageholder/m2e_plugin.png
+ * m2e 설치 (아래 m2e-wtp를 설치하면 함께 설치되므로 생략 가능)
+  * 메뉴의 Help > Eclipse Marketplace
+  * maven 으로 검색하여 "Maven Integration for Eclipse" 설치  https://sites.google.com/a/fundevs.com/fundevs-home/imageholder/m2e_plugin.png
  * m2e-wtp 설치
   * 메뉴의 Help > Eclipse Marketplace
   * maven 으로 검색하여 "Maven Integration for Eclipse WTP" 설치
@@ -24,6 +23,10 @@
   * spring 으로 검색하여 *"Spring Tool Suite for Eclipse _{버전}_"* 설치 (Eclipse *버전별로 따로 있으니 확인하여 설치*)
   * 여러가지 선택하여 설치할 수 있는데, 기본적으로 *Core/Spring IDE* 만 석택하여 설치하면 됨.
   https://sites.google.com/a/fundevs.com/fundevs-home/_/rsrc/1347588044905/imageholder/sts1.png
+ * Subversive 설치
+  * 메뉴의 Help > Eclipse Marketplace
+  * subversive 으로 검색하여 *"Subversive - SVN Team Provider"* 설치 (기호에 따라 Subversion 을 설치해도 됨)
+  https://sites.google.com/a/fundevs.com/fundevs-home/imageholder/subversive.png
 
 == Eclipse WTP Server 설정 ===
  * Apache tomcat 압축버전 다운받아 원하는 곳에 풀어 둠. [http://tomcat.apache.org]
