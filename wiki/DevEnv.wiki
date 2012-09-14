@@ -9,7 +9,6 @@
 
 == Eclipse / Plugin 설치 ==
  * JDK 설치 (1.6 이상 권장)
-
  * J2EE 버전 eclipse 다운받아 설치
  * m2e 설치
   * 메뉴의 Help > Install New Software 에서 eclipse download 선택
