@@ -29,7 +29,7 @@ public class CalculatorServlet extends HttpServlet {
 		int num1 = Integer.parseInt(request.getParameter("num1"));
 		int num2 = Integer.parseInt(request.getParameter("num2"));
 		String op = request.getParameter("operator");
-		float result = 0; 
+		double result = 0; 
 		
 		if(op.equals("+")){
 			result = num1 + num2;
@@ -38,7 +38,7 @@ public class CalculatorServlet extends HttpServlet {
 		}else if(op.equals("*")){
 			result = num1 * num2;
 		}else{
-			result = num1 / (float) num2;
+			result = num1 / (double) num2;
 		}
 		
 		request.setAttribute("result", result);
