@@ -5,10 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-<% int result =0;
-   // result =Integer.parseInt(request.getParameter("result")); 
-	System.out.println(result);
-%>
+
 </head>
 <body>
 
@@ -27,7 +24,7 @@
 <input type = "text" name="val2" size="10">
 
 =
-<input type = "text" value= <%=result%> >
+<input type = "text"  >
 
 <br>
 <input type = "submit" value="계산">
