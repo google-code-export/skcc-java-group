@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>calculator</servlet-name>
+  	<display-name>calculator</display-name>
+  	<description></description>
+  	<servlet-class>com.skcc.calculator</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>calculator</servlet-name>
+  	<url-pattern>/calculator</url-pattern>
+  </servlet-mapping>
 </web-app>
